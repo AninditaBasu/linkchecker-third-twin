@@ -10,18 +10,18 @@ Relationship tables, topicref collections, inline cross-references, and links in
 
 #### Prerequisite
 
-Download and install Python 2.7.5. Later versions of Python should work.
+Download and install Python 2.7.5. Later versions of Python should also work.
 
 #### Steps
 
-1. Download this entire repository as a `.zip` file, extract the contents to any folder, and double-click `third_twin.py`.
-2. When prompted, enter the full path of the directory to be scanned, for example, `c:\documentation`.
+1. Download this repository as a `.zip` file, extract the contents to any folder, and double-click `third_twin.py`.
+2. When prompted, enter the full path of the folder that contains the DITA files and maps, for example, `c:\documentation\MyProduct\`. The script will scan all of the subfolders of the specified folder.
 3. When the checking is complete, you see a message on the console: `Press any key to exit.` Press any key.
 4. Go to the folder where the script resides. You see a file called `RepeatedLinks.html`. This is the report file for you to read and act upon.  
 
 ## Limitations
 
-The script assumes that all DITA topic files have the `.dita` extension and all DITA map files have the `.ditamap` extension. If your files are `.xml` files, this script will not work.
+It is assumed that all DITA topic files have the `.dita` extension and all DITA map files have the `.ditamap` extension. If your files use the `.xml` extension, this script will not work in its present form.
 
 ## Bugs and enhancements
 
