@@ -46,21 +46,21 @@ reportfile.write("<body>")
 #
 # Prompt for the workspace directory.
 #
-print "\n"
-print "Specify the full path to the directory that contains the plug-ins to be checked.\n"
-print "For example: C:\jazz_repo\RIT_87\n"
+print ("\n")
+print ("Specify the full path to the directory that contains the plug-ins to be checked.\n")
+print ("For example: C:\jazz_repo\RIT_87\n")
 workspace=raw_input("Enter the directory: ")
 #
 # Traverse the supplied directory and count the number of plug-ins (sub directories).
 #
 reportfile.write("<h1>Report of same link occuring several times on one page</h1>")
-print "\n"
-print "The following folders were checked: \n"
+print ("\n")
+print ("The following folders were checked: \n")
 counter = 0
 try:
 	for foldername in os.listdir(workspace):
 		counter = counter + 1
-		print foldername
+		print (foldername)
 except:
 	print ("No. Wait. One second. Something is not right.")
 	print ("The directory could not be found.")
@@ -88,7 +88,7 @@ for (dirname, dirs, files) in os.walk(workspace):
 	for filename in files:
 		if filename.endswith('.dita') :
 			counter = counter + 1
-			print filename			
+			print (filename)
 x = str(counter)
 reportfile.write(" "+x+" .dita files, and ")
 #
@@ -107,12 +107,12 @@ for (dirname, dirs, files) in os.walk(workspace):
 # Clean up the duplicate entries in the "maplist" list.
 #
 cleanmaplist=list() # List that will not contain the duplicate entries
-print "--\nThe directory contains the following .ditamap files:\n"
+print ("--\nThe directory contains the following .ditamap files:\n")
 for filename in maplist:
 	if filename not in cleanmaplist:
 		cleanmaplist.append(filename)
-		print filename
-print "------------\n"
+		print (filename)
+print ("------------\n")
 x = len(cleanmaplist)
 x = str(x)
 reportfile.write(x)
@@ -156,7 +156,7 @@ for (dirname, dirs, files) in os.walk(workspace):
 					linkpos = link.rfind('"') # to find and remove instances of "href = " from refs
 					linkclean = link[linkpos+1:]
 					string = filename+":"+linkclean+" in "+thefile
-					print string
+					print (string)
 					linkfile.write(string)
 					linkfile.write("\n")
 handle.close()
@@ -291,14 +291,14 @@ for (dirname, dirs, files) in os.walk(workspace):
 	for filename in files:
 		if filename.endswith('.ditamap') :
 			thefile=os.path.join(dirname,filename)
-			print filename, thefile
+			print (filename, thefile)
 			try:				
 				tree = ET.parse(thefile)
 				for parent in tree.getiterator('topicref'):
 					for child in parent:
 						elem = child.tag
 						if elem == "topicref":
-							print child.tag, child.attrib.get('href'), parent.tag, parent.attrib.get('href')
+							print (child.tag, child.attrib.get('href'), parent.tag, parent.attrib.get('href'))
 							a = child.attrib.get('href')
 							apos = a.rfind("/")
 							newa = a[apos+1:]
@@ -399,8 +399,8 @@ while counter < howmany:
 #
 # Write these entries to the report file.
 #
-print "These are the duplicate links through relationship tables in .ditamap files.\n"
-print duplicatelinks
+print ("These are the duplicate links through relationship tables in .ditamap files.\n")
+print (duplicatelinks)
 #
 reportfile.write('<a name = "rel"></a>')
 reportfile.write('<h2>Links that are automatically inserted as child links in a parent topic and as "Related links" in a topic</h2>')
@@ -458,7 +458,7 @@ for (dirname, dirs, files) in os.walk(workspace):
 	for filename in files:
 		if filename.endswith('.dita') :
 			counter = counter + 1
-			print filename
+			print (filename)
 			thefile=os.path.join(dirname,filename)
 			handle = open (thefile)
 			for line in handle:
@@ -480,12 +480,12 @@ for filename in hreflist:
 # Next, open each file in this list and see if an href occurs more than once.
 # If it does, print it.
 #
-print "\n"
-print "These are the duplicate in-line links:\n"
+print ("\n")
+print ("These are the duplicate in-line links:\n")
 #
 x = len(cleanhreflist)
 if x == 0:
-	print "There are no duplicate in-line links in topic files."
+	print ("There are no duplicate in-line links in topic files.")
 	reportfile.write("<p>There are no duplicate in-line links in topic files.</p>")
 else:	
 	reportfile.write('<table border = "1">')
@@ -510,7 +510,7 @@ else:
 	for key, value in c.iteritems():
 		if value ==1:continue
 		else:
-			print key, value
+			print (key, value)
 			a = str(key)
 			b = str(value)
 			fileAfind = a.find("+")
@@ -547,7 +547,7 @@ for filename in cleanmaplist:
 			continue
 		counter = counter + 1
 	familylist.update({filename: counter})
-print familylist
+print (familylist)
 handle.close()
 #
 # Next, open the "familylist" dictionary and ignore the filenames that have a count of 0 (zero). Write the remaining filenames to the report.
@@ -561,7 +561,7 @@ reportfile.write('<tr><td><h4>Where found</h4></td><td><h4>No. of "family" occur
 #
 for filename, number in familylist.iteritems():
 	if number != 0:
-		print filename, number
+		print (filename, number)
 		a = str(number)
 		reportfile.write('<tr><td>'+filename+'</td><td>'+a+'</td></tr>')
 reportfile.write('</table>')
@@ -585,10 +585,10 @@ os.remove("mapreflist.txt")
 #
 # Display a completion message on the program console.
 #
-print "------------\n"
-print "------------\n"
-print "S T A R T   R E A D I N G   F R O M   H E R E"
-print "------------\n"
+print ("------------\n")
+print ("------------\n")
+print ("S T A R T   R E A D I N G   F R O M   H E R E")
+print ("------------\n")
 print ("\nA report file called RepeatedLinks.html was generated and placed in the same directory that has this program.\n")
 print("The program will now close.\n")
 #
