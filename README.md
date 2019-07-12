@@ -1,3 +1,5 @@
+![license: GPL 3.0](https://img.shields.io/badge/license-GPL%203.0-lightgrey.svg)  ![python 3.7](https://img.shields.io/badge/python-3.7.0-blue.svg)
+
 # linkchecker-third-twin
 
 Find the links that occur more than once in  any DITA topic file. A link might have been inserted manually as an `xref` or `related-links` tag, or generated automatically during the DITA build through the `collection type` attribute or a `reltable` entry.
@@ -6,26 +8,33 @@ For any specified directory, this script checks all of the links in a DITA files
 
 Relationship tables, topicref collections, inline cross-references, and links in the related-links tag are all reckoned.
 
-## Usage instructions
+## Usage scenario
 
-#### Prerequisite
+When DITA topics are transformed to HTML, the following links are auto-generated and inserted inside the topic:
 
-Download and install Python 2.7.5. Later versions of Python should also work.
+- Links to nested `topicref` elements in a DITA map file
+- Links to topics in the same row in a relationship table
 
-#### Steps
+Additionally, DITA topics might have the following links inserted manually in the topic:
 
-1. Download this repository as a `.zip` file, extract the contents to any folder, and double-click `third_twin.py`.
-2. When prompted, enter the full path of the folder that contains the DITA files and maps, for example, `c:\documentation\MyProduct\`. The script will scan all of the subfolders of the specified folder.
-3. When the checking is complete, you see a message on the console: `Press any key to exit.` Press any key.
-4. Go to the folder where the script resides. You see a file called `RepeatedLinks.html`. This is the report file for you to read and act upon.  
+- Through an `xref` tag
+- Through the `related-links` tag
 
+The net effect is, after the transforms, a topic might contain a link to the same target more than once. Maybe yours is a multi-writer team, maybe you inherited the files and haven't done a link check, maybe you yourself linked to a topic twice: once through a `.ditamap` file and once again through an in-topic related link.
+
+This script will find all such links: links that occur more than once in a topic. The script will, then, generate a report for you. Read the report and delete the extra insertions.
+
+## Documentation
+
+See [Anin's Documentation Tools](https://doc-tools.readthedocs.io/en/latest/).
+ 
 ## Limitations
 
-It is assumed that all DITA topic files have the `.dita` extension and all DITA map files have the `.ditamap` extension. If your files use the `.xml` extension, this script will not work in its present form.
+It is assumed that all DITA topic files have the `.dita` extension. If your files use the `.xml` extension, this script will not work in its present form.
 
-## Bugs and enhancements
+## Acknowledgments
 
-Use GitHub's issue tracking feature.
+The code was converted from `.py` to `.exe` through [auto-py-to-exe](https://github.com/brentvollebregt/auto-py-to-exe).
 
 ## Licensing
 
