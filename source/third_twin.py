@@ -49,7 +49,7 @@ reportfile.write("<body>")
 print ("\n")
 print ("Specify the full path to the directory that contains the plug-ins to be checked.\n")
 print ("For example: C:\jazz_repo\RIT_87\n")
-workspace=raw_input("Enter the directory: ")
+workspace=input("Enter the directory: ")
 #
 # Traverse the supplied directory and count the number of plug-ins (sub directories).
 #
@@ -70,7 +70,7 @@ except:
 	reportfile.write("</body>")
 	reportfile.write("</html>")
 	reportfile.close()
-	raw_input ("Press any key to exit.")
+	input ("Press any key to exit.")
 	exit()
 reportfile.write('<p>The <a href="file:///')
 reportfile.write(workspace)
@@ -143,7 +143,7 @@ for (dirname, dirs, files) in os.walk(workspace):
 	for filename in files:
 		if filename.endswith('.dita'):
 			thefile=os.path.join(dirname,filename)
-			handle = open (thefile)
+			handle = open(thefile, encoding='utf8')
 			for line in handle:
 				line = line.rstrip()
 				if re.search('link.+\.dita', line):
@@ -156,7 +156,7 @@ for (dirname, dirs, files) in os.walk(workspace):
 					linkpos = link.rfind('"') # to find and remove instances of "href = " from refs
 					linkclean = link[linkpos+1:]
 					string = filename+":"+linkclean+" in "+thefile
-					print (string)
+					print(string)
 					linkfile.write(string)
 					linkfile.write("\n")
 handle.close()
@@ -309,7 +309,7 @@ for (dirname, dirs, files) in os.walk(workspace):
 							mapreflist.write(string)
 							mapreflist.write("\n")
 			except:
-				raw_input("something went wrong")
+				input("something went wrong")
 				exit()
 mapreflist.close()
 #
@@ -460,7 +460,7 @@ for (dirname, dirs, files) in os.walk(workspace):
 			counter = counter + 1
 			print (filename)
 			thefile=os.path.join(dirname,filename)
-			handle = open (thefile)
+			handle = open(thefile, encoding='utf8')
 			for line in handle:
 				line = line.rstrip()
 				if re.search('href.+\.dita', line) : 
@@ -495,7 +495,7 @@ else:
 	reflist = list()
 	for filename in cleanhreflist:
 		#counthref = list() # counter for occurence of filename
-		handle = open(filename)
+		handle = open(filename, encoding='utf8')
 		for line in handle:
 			line = line.rstrip()
 			if re.search('\.dita', line): 
@@ -507,7 +507,7 @@ else:
 				reflist.append(string)
 	c = collections.Counter()
 	c.update(reflist)
-	for key, value in c.iteritems():
+	for key, value in c.items():
 		if value ==1:continue
 		else:
 			print (key, value)
@@ -559,7 +559,7 @@ reportfile.write('<p>If the table has no entries, none of the ditamap files in y
 reportfile.write('<table border = "1">')
 reportfile.write('<tr><td><h4>Where found</h4></td><td><h4>No. of "family" occurences</h4></td></tr>')
 #
-for filename, number in familylist.iteritems():
+for filename, number in familylist.items():
 	if number != 0:
 		print (filename, number)
 		a = str(number)
@@ -592,6 +592,6 @@ print ("------------\n")
 print ("\nA report file called RepeatedLinks.html was generated and placed in the same directory that has this program.\n")
 print("The program will now close.\n")
 #
-raw_input("Press any key to exit.")
+input("Press any key to exit.")
 exit()
 # The End
